@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	<title>Index page</title>
+</h:head>
+<body class = "backpng">
+	<p>Welcome, #{request.remoteUser}</p>
+	<!-- <h:link outcome="/admin/staffindex.xhtml" value="Staff management" />
+			<br/>
+		<h:link outcome="/admin/customerindex.xhtml" value="Customer management" />
+		<br/>
+		<h:link outcome="/admin/contactindex.xhtml" value="Customer contact management" /> -->
+	<div class="staff">
+		<h:link id="staff" value="Staff Management"
+			outcome="/admin/staffindex.xhtml" class="btn btn-primary" />
+		<br /> <br /> <br />
+		<h:link id="customer" value="Customer Management"
+			outcome="/admin/customerindex.xhtml" class="btn btn-primary" />
+		<br /> <br /> <br />
+		<h:link id="contact" value="Customer Contact Management"
+			outcome="/admin/contactindex.xhtml" class="btn btn-primary" />
+	</div>
+</body>
+</html>

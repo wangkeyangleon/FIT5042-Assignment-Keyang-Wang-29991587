@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<title>#{titleController.pageTitle}</title>
+</h:head>
+<h:body>
+	<div></div>
+	<div class="container">
+		<div class="navbar navbar-inverse">
+			<div class="navbar-brand">#{titleController.pageTitle} - Add
+				Customer contact</div>
+		</div>
+		<div>
+			<f:view>
+				<h:form>
+					<h1>
+						<h:outputText value="Create" />
+					</h1>
+					<table class="table table-bordered ">
+
+						<tr>
+							<td width="200"><h:outputLabel
+									value="customerContactFirstName" for="customerContactFirstName" />
+							</td>
+							<td><h:inputText id="customerContactFirstNamer"
+									value="#{customerContact.conFname}"
+									title="customerContactFirstNamer" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel
+									value="customerContactLastName" for="customerContactLastName" />
+							</td>
+							<td><h:inputText id="customerContactLastNamer"
+									value="#{customerContact.conLname}"
+									title="customerContactLastNamer" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerContactGender"
+									for="customerContactGender" /></td>
+							<td><h:inputText id="customerContactGender"
+									value="#{customerContact.conGender}"
+									title="customerContactGender" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerContactStreet"
+									for="customerContactStreet" /></td>
+							<td><h:inputText id="customerContactStreet"
+									value="#{customerContact.conStreet}"
+									title="customerContactStreet" /></td>
+
+						</tr>
+
+						<tr>
+							<td width="200"><h:outputLabel value="customerContactCity"
+									for="customerContactCity" /></td>
+							<td><h:inputText id="customerContactCity"
+									value="#{customerContact.conCity}" title="customerContactCity" />
+							</td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerContactState"
+									for="customerContactState" /></td>
+							<td><h:inputText id="customerContactState"
+									value="#{customerContact.conState}"
+									title="customerContactState" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel
+									value="customerContactPostcode" for="customerContactPostcode" />
+							</td>
+							<td><h:inputText id="customerContactPostcode"
+									value="#{customerContact.conPostcode}"
+									title="customerContactPostcode" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerContactPhone"
+									for="customerContactPhone" /></td>
+							<td><h:inputText id="customerContactPhone"
+									value="#{customerContact.conPhone}"
+									title="customerContactPhone" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerContactEmail"
+									for="customerContactEmail" /></td>
+							<td><h:inputText id="customerContactEmail"
+									value="#{customerContact.conEmail}"
+									title="customerContactEmail" /></td>
+
+						</tr>
+						<tr>
+							<td width="100" valign="top">Customer:</td>
+							<!-- the value below is for display -->
+							<td><h:selectOneMenu id="customer"
+									value="#{customerContact.cusName}">
+									<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
+									<f:selectItems value="#{customerContactManagedBean.allCustomers}"
+										var="c" itemLabel="#{c.cusName}"
+										itemValue="#{c.cusName}"></f:selectItems>
+								</h:selectOneMenu></td>
+						</tr>
+
+					</table>
+
+					<h:commandButton id="submit" value="Submit"
+						action="#{addCustomerContact.addCustomerContact(customerContact)}"
+						class="btn btn-primary" />
+					<h:link id="close" value="Close"
+						outcome="/normaluser/contactindex.xhtml" class="btn btn-primary" />
+
+				</h:form>
+
+			</f:view>
+		</div>
+	</div>
+
+</h:body>
+</html>

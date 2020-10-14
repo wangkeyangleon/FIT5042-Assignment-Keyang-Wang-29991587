@@ -1,0 +1,133 @@
+ create table STAFF
+(
+	staff_id INT not null generated always as identity (start with 20200000,increment by 1),
+	staff_password varchar(150) not null,
+	staff_type varchar(5) not null,
+	staff_birthdate DATE not null,
+	staff_gender varchar(10) not null,
+	staff_fname varchar(150) not null,
+	staff_lname varchar(150) not null,
+	staff_street varchar(150) not null,
+	staff_city varchar(150) not null,
+	staff_state varchar(150) not null,
+	staff_postcode numeric(4) not null,
+	staff_phone numeric(10) not null,
+	staff_email varchar(150) not null,
+	primary key (staff_id)
+)
+insert into STAFF(staff_type,staff_password,staff_birthdate,staff_gender,staff_fname,staff_lname,staff_street,staff_city,staff_state,staff_postcode,staff_phone,staff_email)values(
+
+'admin',
+'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918',
+'1990-03-09',
+	'male',
+	'admin',
+	'admin',
+	'Eucalyptus',
+	'Monash',
+	'Victoria',
+	3168,
+	0123456789,
+	'ausprinting@gmail.com'	
+);  
+insert into STAFF(staff_type,staff_password,staff_birthdate,staff_gender,staff_fname,staff_lname,staff_street,staff_city,staff_state,staff_postcode,staff_phone,staff_email)values(
+
+'user',
+'0a041b9462caa4a31bac3567e0b6e6fd9100787db2ab433d96f6d178cabfce90',
+'1990-03-09',
+	'male',
+	'user1',
+	'user1',
+	'Eucalyptus',
+	'Monash',
+	'Victoria',
+	3168,
+	0123456789,
+	'ausprinting@gmail.com'	
+); 
+insert into STAFF(staff_type,staff_password,staff_birthdate,staff_gender,staff_fname,staff_lname,staff_street,staff_city,staff_state,staff_postcode,staff_phone,staff_email)values(
+
+'user',
+'6025d18fe48abd45168528f18a82e265dd98d421a7084aa09f61b341703901a3',
+'1990-03-09',
+	'male',
+	'user2',
+	'user2',
+	'Eucalyptus',
+	'Monash',
+	'Victoria',
+	3168,
+	0123456789,
+	'ausprinting@gmail.com'	
+); 
+create table CUSTOMER
+(
+	cus_id int not null generated always as identity (start with 1,increment by 1),
+	industry_id int,
+	cus_name varchar(150) not null,
+	cus_street varchar(150) not null,
+	cus_city varchar(150) not null,
+	cus_state varchar(150) not null,
+	cus_postcode numeric(4) not null,
+	cus_phone numeric(10) not null,
+	cus_email varchar(150) not null,
+	staff_id int,
+	primary key (cus_id),
+	foreign key (industry_id) references INDUSTRY_TYPE(industry_id),
+	foreign key (staff_id) references STAFF(staff_id)
+)
+create table CUSTOMER_CONTACT
+(
+	con_id int not null generated always as identity (start with 1,increment by 1),
+	con_fname varchar(150) not null,
+	con_lname varchar(150) not null,
+	con_gender varchar(10) not null,
+	con_street varchar(150) not null,
+	con_city varchar(150) not null,
+	con_state varchar(150) not null,
+	con_postcode numeric(4) not null,
+	con_phone numeric(10) not null,
+	con_email varchar(150) not null,
+	cus_id int,
+	staff_id int,
+	primary key(con_id),
+	foreign key (cus_id) references CUSTOMER(cus_id),
+	foreign key (staff_id) references STAFF(staff_id)
+)
+insert into CUSTOMER (cus_name,cus_street,cus_city,cus_state,cus_postcode,cus_phone,cus_email,industry_id,staff_id) values(
+	'tomecustomer',
+	'Blackburn',
+	'Monash',
+	'VIC',
+	3168,
+	0423025889,
+	'tomcustomer@gmail.com',
+	1,
+	20200001
+	
+);
+insert into CUSTOMER (cus_name,cus_street,cus_city,cus_state,cus_postcode,cus_phone,cus_email,industry_id,staff_id) values(
+	'Glasscustomer',
+	'Blackburn',
+	'Monash',
+	'VIC',
+	3168,
+	0423025996,
+	'Glasscustomer@gmail.com',
+	1,
+	20200001
+	
+);
+insert into CUSTOMER_CONTACT(con_fname,con_lname,con_gender,con_street,con_city,con_state,con_postcode,con_phone,con_email,cus_id,staff_id)values(
+	'Justin',
+	'Bibber',
+	'male',
+	'Eucalyptus',
+	'Monash',
+	'VIC',
+	3168,
+	0425017886,
+	'justincontact@gmail.com',
+	1,
+	20200001
+);

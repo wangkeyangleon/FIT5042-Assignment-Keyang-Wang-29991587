@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<title>#{titleController.pageTitle}</title>
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="/resources/demos/style.css" />
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+	<script type="text/javascript">
+            $(function () {
+                $("#myForm\\:staffBirthdate").datepicker();
+            });
+        </script>
+</h:head>
+<h:body>
+	<div></div>
+	<div class="container">
+		<div class="navbar navbar-inverse">
+			<div class="navbar-brand">#{titleController.pageTitle} - Add
+				Staff</div>
+		</div>
+		<div>
+			<f:view>
+				<h:form id="myForm">
+					<h1>
+						<h:outputText value="Create" />
+					</h1>
+					<table class="table table-bordered ">
+						<tr>
+							<td width="200"><h:outputLabel value="staffPassword"
+									for="staffPassword" /></td>
+							<td><h:inputText id="staffPassword"
+									value="#{staff.staffPassword}" title="staffPasswrod" /></td>
+
+						</tr>
+
+
+						<tr>
+							<td width="200"><h:outputLabel value="staffFirstName"
+									for="staffFirstName" /></td>
+							<td><h:inputText id="staffFirstName"
+									value="#{staff.staffFname}" title="staffFirstName" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffLastName"
+									for="staffLastName" /></td>
+							<td><h:inputText id="staffLastName"
+									value="#{staff.staffLname}" title="staffLastname" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffType"
+									for="staffType" /></td>
+							<td><h:inputText id="staffType" value="#{staff.staffType}"
+									title="staffType" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffGender"
+									for="staffGender" /></td>
+							<td><h:inputText id="staffGender"
+									value="#{staff.staffGender}" title="staffGender" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffBirthdate"
+									for="staffBirthdate" /></td>
+							<td><h:inputText id="staffBirthdate"
+									value="#{staff.staffBirthdate}" title="staffBirthdate">
+									<f:convertDateTime pattern="mm/dd/yyyy" />
+								</h:inputText></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffStreet"
+									for="staffStreet" /></td>
+							<td><h:inputText id="staffStreet"
+									value="#{staff.staffStreet}" title="staffStreet" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffCity"
+									for="staffCity" /></td>
+							<td><h:inputText id="staffCity" value="#{staff.staffCity}"
+									title="staffCity" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffState"
+									for="staffState" /></td>
+							<td><h:inputText id="staffState" value="#{staff.staffState}"
+									title="staffState" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffPostcode"
+									for="staffPostcode" /></td>
+							<td><h:inputText id="staffPostcode"
+									value="#{staff.staffPostcode}" title="staffPostcode" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffPhone"
+									for="staffPhone" /></td>
+							<td><h:inputText id="staffPhone"
+									value="#{staff.staffPhone}" title="staffPhone" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="staffEmail"
+									for="staffEmail" /></td>
+							<td><h:inputText id="staffEmail"
+									value="#{staff.staffEmail}" title="staffEmail" /></td>
+
+						</tr>
+
+					</table>
+
+					<h:commandButton id="submit" value="Submit"
+						action="#{addStaff.addStaff(staff)}" class="btn btn-primary" />
+					<h:link id="close" value="Close" outcome="/admin/staffindex.xhtml"
+						class="btn btn-primary" />
+
+				</h:form>
+
+			</f:view>
+		</div>
+	</div>
+
+</h:body>
+</html>

@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<title>#{titleController.pageTitle}</title>
+</h:head>
+<h:body>
+	<div class="container">
+		<div class="navbar navbar-inverse">
+			<div class="navbar-brand">#{titleController.pageTitle} - Staff
+				Details</div>
+		</div>
+
+		<h:form id="MyForm">
+			<table class="table table-bordered ">
+
+				<tr>
+					<td width="150" valign="top">Id:</td>
+
+					<td valign="bottom"><h:outputLabel id="Id">#{staffController.staff.staffId}</h:outputLabel>
+					</td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">staff first name:</td>
+					<!-- the value below is for display -->
+					<td valign="bottom"><h:inputText id="firstname"
+							value="#{staffController.staff.staffFname}"
+							requiredMessage="Please enter the first name. "></h:inputText></td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">staff last name:</td>
+					<!-- the value below is for display -->
+					<td valign="bottom"><h:inputText id="lastname"
+							value="#{staffController.staff.staffLname}"
+							requiredMessage="Please enter the last name. "></h:inputText></td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">staff gender:</td>
+					<!-- the value below is for display -->
+					<td valign="bottom"><h:inputText id="gender"
+							value="#{staffController.staff.staffGender}"
+							requiredMessage="Please enter the gender. "></h:inputText></td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">staff street:</td>
+					<!-- the value below is for display -->
+					<td valign="bottom"><h:inputText id="street"
+							value="#{staffController.staff.staffStreet}"
+							requiredMessage="Please enter the street. "></h:inputText></td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">staff city:</td>
+					<!-- the value below is for display -->
+					<td valign="bottom"><h:inputText id="city"
+							value="#{staffController.staff.staffCity}"
+							requiredMessage="Please enter the city. "></h:inputText></td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">staff state:</td>
+					<!-- the value below is for display -->
+					<td valign="bottom"><h:inputText id="state"
+							value="#{staffController.staff.staffState}"
+							requiredMessage="Please enter the state. "></h:inputText></td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">staff post code:</td>
+					<!-- the value below is for display -->
+					<td valign="bottom"><h:inputText id="postcode"
+							value="#{staffController.staff.staffPostcode}"
+							requiredMessage="Please enter the post code. "></h:inputText></td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">staff phone:</td>
+					<!-- the value below is for display -->
+					<td valign="bottom"><h:inputText id="phone"
+							value="#{staffController.staff.staffPhone}"
+							requiredMessage="Please enter the phone. "></h:inputText></td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">staff email:</td>
+					<!-- the value below is for display -->
+					<td valign="bottom"><h:inputText id="email"
+							value="#{staffController.staff.staffEmail}"
+							requiredMessage="Please enter the email. "></h:inputText></td>
+				</tr>
+
+
+
+			</table>
+			<!-- ID: identifier for a component 
+			name: an optional name for this parameter component
+			value: the value stored in this component -->
+			<h:commandButton id="save" value="Save"
+				action="#{staffManagedBean.editStaff(staffController.staff)}"
+				class="btn btn-primary">
+				<f:param name="staffId" value="#{staffController.staffId+1}" />
+			</h:commandButton>
+			<h:link id="close" value="Close" outcome="/admin/staffindex.xhtml"
+				class="btn btn-primary" />
+		</h:form>
+	</div>
+</h:body>
+</html>

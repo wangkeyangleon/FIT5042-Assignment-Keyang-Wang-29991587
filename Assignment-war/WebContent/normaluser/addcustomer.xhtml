@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<title>#{titleController.pageTitle}</title>
+</h:head>
+<h:body>
+	<div></div>
+	<div class="container">
+		<div class="navbar navbar-inverse">
+			<div class="navbar-brand">#{titleController.pageTitle} - Add
+				Customer</div>
+		</div>
+		<div>
+			<f:view>
+				<h:form>
+					<h1>
+						<h:outputText value="Create" />
+					</h1>
+					<table class="table table-bordered ">
+
+						<tr>
+							<td width="200"><h:outputLabel value="customerName"
+									for="customerName" /></td>
+							<td><h:inputText id="customerName"
+									value="#{customer.cusName}" title="customerName" /></td>
+
+						</tr>
+						<tr>
+							<td width="100" valign="top">Industry type:</td>
+							<!-- the value below is for display -->
+							<td><h:selectOneMenu id="industryType"
+									value="#{customer.induType}">
+									<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
+									<f:selectItems value="#{customerManagedBean.allIndustryTypes}"
+										var="c" itemLabel="#{c.industryType}"
+										itemValue="#{c.industryType}"></f:selectItems>
+								</h:selectOneMenu></td>
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerStreet"
+									for="customerStreet" /></td>
+							<td><h:inputText id="customerStreet"
+									value="#{customer.cusStreet}" title="customerStreet" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerCity"
+									for="customerCity" /></td>
+							<td><h:inputText id="customerCity"
+									value="#{customer.cusCity}" title="customerCity" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerState"
+									for="customerState" /></td>
+							<td><h:inputText id="customerState"
+									value="#{customer.cusState}" title="customerState" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerPostcode"
+									for="customerPostcode" /></td>
+							<td><h:inputText id="customerPostcode"
+									value="#{customer.cusPostcode}" title="customerPostcode" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerPhone"
+									for="customerPhone" /></td>
+							<td><h:inputText id="customerPhone"
+									value="#{customer.cusPhone}" title="customerPhone" /></td>
+
+						</tr>
+						<tr>
+							<td width="200"><h:outputLabel value="customerEmail"
+									for="customerEmail" /></td>
+							<td><h:inputText id="customerEmail"
+									value="#{customer.cusEmail}" title="customerEmail" /></td>
+
+						</tr>
+						<!--  add staff-->
+						<tr>
+							<td width="100" valign="top">Staff:</td>
+							<!-- the value below is for display -->
+							<td><h:selectOneMenu id="staff"
+									value="#{customer.staffId}">
+									<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
+									<f:selectItems value="#{customerManagedBean.allStaffs}"
+										var="c" itemLabel="#{c.staffId}"
+										itemValue="#{c.staffId}"></f:selectItems>
+								</h:selectOneMenu></td>
+						</tr>
+
+					</table>
+
+					<h:commandButton id="submit" value="Submit"
+						action="#{addCustomer.addCustomer(customer)}"
+						class="btn btn-primary" />
+					<h:link id="close" value="Close"
+						outcome="/normaluser/customerindex.xhtml" class="btn btn-primary" />
+
+				</h:form>
+
+			</f:view>
+		</div>
+	</div>
+
+</h:body>
+</html>

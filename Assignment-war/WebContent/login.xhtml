@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>Login page</title>
+		<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+		<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	</h:head> 
+	<body class = "backpng">
+	<div class = "loginmedium">
+		<h2>Please log in:</h2>
+		<br/>
+		<br/>
+		<form method="post" action="j_security_check">
+            <label for="j_username">Username:</label>
+            <input type="text" name="j_username" />
+            <br />
+            <br />
+            <label for="j_password">Password:     </label>
+            <input type="password" name="j_password" />
+            <br />
+            <br />
+            <input type="submit" value="Log in" class="btn btn-primary">
+            	
+            </input>
+        </form>
+        </div>
+	</body> 
+</html>
