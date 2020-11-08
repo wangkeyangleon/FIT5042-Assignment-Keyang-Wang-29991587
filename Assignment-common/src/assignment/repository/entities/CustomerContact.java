@@ -2,6 +2,10 @@ package assignment.repository.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+
+import org.hibernate.validator.constraints.Length;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,9 +15,14 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "CUSTOMER_CONTACT")
 @NamedQueries({
-		@NamedQuery(name = CustomerContact.GET_ALL_QUERY_NAME, query = "SELECT c FROM CustomerContact c order by c.conId desc") })
+		@NamedQuery(name = CustomerContact.GET_ALL_QUERY_NAME, query = "SELECT c FROM CustomerContact c order by c.conId desc"),
+		@NamedQuery(name = CustomerContact.GET_ALL_QUERY_NAME2, query = "SELECT c FROM CustomerContact c where c.customer = ?1 order by c.conId desc"),
+		@NamedQuery(name = CustomerContact.GET_ALL_QUERY_NAME3, query = "SELECT c FROM CustomerContact c where c.staff = ?1 order by c.conId desc")
+		})
 public class CustomerContact implements Serializable {
 	public static final String GET_ALL_QUERY_NAME = "CustomerContact.getAll";
+	public static final String GET_ALL_QUERY_NAME2 = "CustomerContact.getContactByCustomer";
+	public static final String GET_ALL_QUERY_NAME3 = "CustomerContact.getContactByStaff";
 	private int conId;
 	private String conCity;
 	private String conEmail;
@@ -51,6 +60,7 @@ public class CustomerContact implements Serializable {
 	}
 
 	@Column(name = "CON_EMAIL")
+	@Email(message = "please follow the email format")
 	public String getConEmail() {
 		return this.conEmail;
 	}
@@ -125,6 +135,7 @@ public class CustomerContact implements Serializable {
 	// bi-directional many-to-one association to Customer
 	@ManyToOne
 	@JoinColumn(name = "CUS_ID")
+	
 	public Customer getCustomer() {
 		return this.customer;
 	}

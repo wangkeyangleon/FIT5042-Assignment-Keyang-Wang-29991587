@@ -9,7 +9,7 @@
 	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<title>Index page</title>
 </h:head>
-<body class = "backpng">
+<body class="backpng">
 	<p>Welcome, #{request.remoteUser}</p>
 	<!-- <h:link outcome="/admin/staffindex.xhtml" value="Staff management" />
 			<br/>
@@ -17,6 +17,7 @@
 		<br/>
 		<h:link outcome="/admin/contactindex.xhtml" value="Customer contact management" /> -->
 	<div class="staff">
+
 		<h:link id="staff" value="Staff Management"
 			outcome="/admin/staffindex.xhtml" class="btn btn-primary" />
 		<br /> <br /> <br />
@@ -25,6 +26,10 @@
 		<br /> <br /> <br />
 		<h:link id="contact" value="Customer Contact Management"
 			outcome="/admin/contactindex.xhtml" class="btn btn-primary" />
+			<br /> <br /> <br />
+		<h:form>
+			<h:commandButton value="logout" action="#{loginManagedBean.logout()}" class="btn btn-primary"/>
+		</h:form>
 	</div>
 </body>
 </html>

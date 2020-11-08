@@ -2,6 +2,9 @@ package assignment.repository.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 
@@ -14,11 +17,13 @@ import java.util.List;
  */
 @Entity
 @NamedQueries({
-		@NamedQuery(name = Customer.GET_ALL_QUERY_NAME, query = "SELECT c FROM Customer c order by c.cusId desc"), 
-		@NamedQuery(name = Customer.GET_ALL_QUERY_NAME1, query = "SELECT c FROM Customer c where c.cusName = ?1 order by c.cusId desc")})
+		@NamedQuery(name = Customer.GET_ALL_QUERY_NAME, query = "SELECT c FROM Customer c order by c.cusId desc"),
+		@NamedQuery(name = Customer.GET_ALL_QUERY_NAME1, query = "SELECT c FROM Customer c where c.cusName = ?1 order by c.cusId desc"),
+		@NamedQuery(name = Customer.GET_ALL_QUERY_NAME2, query = "SELECT c FROM Customer c where c.staff =?1 order by c.cusId desc") })
 public class Customer implements Serializable {
 	public static final String GET_ALL_QUERY_NAME = "Customer.getAll";
 	public static final String GET_ALL_QUERY_NAME1 = "Customer.getAllName";
+	public static final String GET_ALL_QUERY_NAME2 = "Customer.getAllStaff";
 	private int cusId;
 	private String cusCity;
 	private String cusEmail;
@@ -29,6 +34,7 @@ public class Customer implements Serializable {
 	private String cusStreet;
 	private IndustryType industryType;
 	private Staff staff;
+	private int staffId;
 	private List<CustomerContact> customerContacts;
 
 	public Customer() {
@@ -55,6 +61,7 @@ public class Customer implements Serializable {
 	}
 
 	@Column(name = "CUS_EMAIL")
+	@Email(message = "please follow the email format")
 	public String getCusEmail() {
 		return this.cusEmail;
 	}
@@ -131,7 +138,7 @@ public class Customer implements Serializable {
 	}
 
 	// bi-directional many-to-one association to CustomerContact
-	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER,cascade = {CascadeType.ALL,CascadeType.REMOVE})
 	public List<CustomerContact> getCustomerContacts() {
 		return this.customerContacts;
 	}
@@ -153,5 +160,13 @@ public class Customer implements Serializable {
 
 		return customerContact;
 	}
+//	@Column(name = "STAFF_ID")
+//	public int getStaffId() {
+//		return staffId;
+//	}
+//
+//	public void setStaffId(int staffId) {
+//		this.staffId = staffId;
+//	}
 
 }

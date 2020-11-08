@@ -35,8 +35,9 @@
 						<tr>
 							<td width="200"><h:outputLabel value="staffPassword"
 									for="staffPassword" /></td>
-							<td><h:inputText id="staffPassword"
-									value="#{staff.staffPassword}" title="staffPasswrod" /></td>
+							<td><h:inputSecret id="staffPassword"
+									value="#{staff.staffPassword}" title="staffPasswrod"
+									required="true" requiredMessage="Please input the password" /></td>
 
 						</tr>
 
@@ -45,14 +46,16 @@
 							<td width="200"><h:outputLabel value="staffFirstName"
 									for="staffFirstName" /></td>
 							<td><h:inputText id="staffFirstName"
-									value="#{staff.staffFname}" title="staffFirstName" /></td>
+									value="#{staff.staffFname}" title="staffFirstName"
+									required="true" requiredMessage="Please input the first name" /></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="staffLastName"
 									for="staffLastName" /></td>
 							<td><h:inputText id="staffLastName"
-									value="#{staff.staffLname}" title="staffLastname" /></td>
+									value="#{staff.staffLname}" title="staffLastname"
+									required="true" requiredMessage="Please input the last name" /></td>
 
 						</tr>
 						<tr>
@@ -62,18 +65,24 @@
 									title="staffType" /></td>
 
 						</tr>
+
 						<tr>
 							<td width="200"><h:outputLabel value="staffGender"
 									for="staffGender" /></td>
-							<td><h:inputText id="staffGender"
-									value="#{staff.staffGender}" title="staffGender" /></td>
-
+							<!-- the value below is for display -->
+							<td><h:selectOneMenu id="staffGender"
+									value="#{staff.staffGender}">
+									<f:selectItem itemValue="male" itemLabel="male"></f:selectItem>
+									<f:selectItem itemValue="female" itemLabel="female"></f:selectItem>
+								</h:selectOneMenu></td>
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="staffBirthdate"
 									for="staffBirthdate" /></td>
 							<td><h:inputText id="staffBirthdate"
-									value="#{staff.staffBirthdate}" title="staffBirthdate">
+									value="#{staff.staffBirthdate}" title="staffBirthdate"
+									required="true" requiredMessage="Please input the birthdate">
+
 									<f:convertDateTime pattern="mm/dd/yyyy" />
 								</h:inputText></td>
 
@@ -82,42 +91,52 @@
 							<td width="200"><h:outputLabel value="staffStreet"
 									for="staffStreet" /></td>
 							<td><h:inputText id="staffStreet"
-									value="#{staff.staffStreet}" title="staffStreet" /></td>
+									value="#{staff.staffStreet}" title="staffStreet"
+									required="true" requiredMessage="Please input the street" /></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="staffCity"
 									for="staffCity" /></td>
 							<td><h:inputText id="staffCity" value="#{staff.staffCity}"
-									title="staffCity" /></td>
+									title="staffCity" required="true"
+									requiredMessage="Please input the city" /></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="staffState"
 									for="staffState" /></td>
 							<td><h:inputText id="staffState" value="#{staff.staffState}"
-									title="staffState" /></td>
+									title="staffState" required="true"
+									requiredMessage="Please input the state" /></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="staffPostcode"
 									for="staffPostcode" /></td>
 							<td><h:inputText id="staffPostcode"
-									value="#{staff.staffPostcode}" title="staffPostcode" /></td>
+									value="#{staff.staffPostcode}" title="staffPostcode"
+									required="true" requiredMessage="Please input the post code"
+									validatorMessage="the length of the postcode should be 4">
+									<f:validateLength minmum='4' maximum='4'>
+									</f:validateLength>
+								</h:inputText></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="staffPhone"
 									for="staffPhone" /></td>
-							<td><h:inputText id="staffPhone"
-									value="#{staff.staffPhone}" title="staffPhone" /></td>
+							<td><h:inputText id="staffPhone" value="#{staff.staffPhone}"
+									title="staffPhone" required="true"
+									requiredMessage="Please input the phone" /></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="staffEmail"
 									for="staffEmail" /></td>
-							<td><h:inputText id="staffEmail"
-									value="#{staff.staffEmail}" title="staffEmail" /></td>
+							<td><h:inputText id="staffEmail" value="#{staff.staffEmail}"
+									title="staffEmail" required="true"
+									requiredMessage="Please input the Email" /></td>
 
 						</tr>
 

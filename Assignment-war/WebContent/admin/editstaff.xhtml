@@ -7,6 +7,17 @@
 <h:head>
 	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
 	<title>#{titleController.pageTitle}</title>
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="/resources/demos/style.css" />
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+	<script type="text/javascript">
+            $(function () {
+                $("#MyForm\\:staffBirthdate").datepicker();
+            });
+        </script>
 </h:head>
 <h:body>
 	<div class="container">
@@ -38,12 +49,24 @@
 							value="#{staffController.staff.staffLname}"
 							requiredMessage="Please enter the last name. "></h:inputText></td>
 				</tr>
+
 				<tr>
 					<td width="100" valign="top">staff gender:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="gender"
 							value="#{staffController.staff.staffGender}"
 							requiredMessage="Please enter the gender. "></h:inputText></td>
+				</tr>
+				<tr>
+					<td width="200"><h:outputLabel value="staffBirthdate"
+							for="staffBirthdate" /></td>
+					<td><h:inputText id="staffBirthdate"
+							value="#{staffController.staff.staffBirthdate}" title="staffBirthdate"
+							required="true" requiredMessage="Please input the birthdate">
+
+							<f:convertDateTime pattern="mm/dd/yyyy" />
+						</h:inputText></td>
+
 				</tr>
 				<tr>
 					<td width="100" valign="top">staff street:</td>

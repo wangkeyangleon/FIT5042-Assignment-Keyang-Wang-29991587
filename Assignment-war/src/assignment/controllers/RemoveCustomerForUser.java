@@ -2,38 +2,31 @@ package assignment.controllers;
 
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.New;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import assignment.mbeans.CustomerManagedBean;
-import assignment.repository.entities.IndustryType;
+import assignment.repository.entities.Customer;
 
 /**
  * @author:Keyang Wang
  * @version:
- * @create time：27 Sep 2020 11:10:37 am
+ * @create time：27 Sep 2020 1:46:15 pm
  * @desc:
  */
 @RequestScoped
-@Named("addCustomer")
-public class AddCustomer {
+@Named("removeCustomerForUser")
+public class RemoveCustomerForUser {
 	@ManagedProperty(value = "#{customerManagedBean}")
 	CustomerManagedBean customerManagedBean;
-
 	private boolean showForm = true;
 	private Customer customer;
-	CustomerApplication application;
-	CustomerApplicationForUser applicationForUser;
+	CustomerApplicationForUser application;
 
 	public boolean isShowForm() {
 		return showForm;
-	}
-
-	public void setShowForm(boolean showForm) {
-		this.showForm = showForm;
 	}
 
 	public Customer getCustomer() {
@@ -44,24 +37,24 @@ public class AddCustomer {
 		this.customer = customer;
 	}
 
-	public AddCustomer() {
+	public RemoveCustomerForUser() {
 		ELContext context = FacesContext.getCurrentInstance().getELContext();
-		application = (CustomerApplication) FacesContext.getCurrentInstance().getApplication().getELResolver()
-				.getValue(context, null, "customerApplication");
+		application = (CustomerApplicationForUser) FacesContext.getCurrentInstance().getApplication().getELResolver()
+				.getValue(context, null, "customerApplicationForUser");
+		application.updateCustomerList();
 		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
 		customerManagedBean = (CustomerManagedBean) FacesContext.getCurrentInstance().getApplication().getELResolver()
 				.getValue(elContext, null, "customerManagedBean");
+		
 	}
-	public void addCustomer(Customer localCustomer) {
+	public void removeCustomer(int customerId) {
 		try {
-			
-			customerManagedBean.addCustomer(localCustomer);
+			customerManagedBean.removeCustomer(customerId);
 			application.searchAll();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been added successfully"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been deleted successfully"));
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		showForm = true;
-		
 	}
 }

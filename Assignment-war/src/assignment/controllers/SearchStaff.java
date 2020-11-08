@@ -18,6 +18,7 @@ public class SearchStaff {
 	private Staff staff;
 	StaffApplication application;
 	private int searchByInt;
+	private String keyString;
 
 	public boolean isShowForm() {
 		return showForm;
@@ -25,6 +26,14 @@ public class SearchStaff {
 
 	public void setShowForm(boolean showForm) {
 		this.showForm = showForm;
+	}
+
+	public String getKeyString() {
+		return keyString;
+	}
+
+	public void setKeyString(String keyString) {
+		this.keyString = keyString;
 	}
 
 	public Staff getStaff() {
@@ -42,8 +51,6 @@ public class SearchStaff {
 	public void setApplication(StaffApplication application) {
 		this.application = application;
 	}
-
-
 
 	public int getSearchByInt() {
 		return searchByInt;
@@ -67,6 +74,15 @@ public class SearchStaff {
 			// TODO: handle exception
 		}
 		showForm = true;
+	}
+
+	public void combineSearch(String kString) {
+		try {
+			application.combineSearch(kString);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 
 	public void searchAll() {

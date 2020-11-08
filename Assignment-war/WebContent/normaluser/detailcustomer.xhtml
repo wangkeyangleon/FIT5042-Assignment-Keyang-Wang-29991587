@@ -20,68 +20,67 @@
 				<tr>
 					<td width="150" valign="top">Id:</td>
 
-					<td valign="bottom"><h:outputLabel id="Id">#{customerController.customer.cusId}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="Id">#{customerControllerForUser.customer.cusId}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">Customer Name:</td>
 
-					<td valign="bottom"><h:outputLabel id="name">#{customerController.customer.cusName}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="name">#{customerControllerForUser.customer.cusName}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">Industry Type:</td>
 
-					<td valign="bottom"><h:outputLabel id="industryType">#{customerController.customer.industryType.industryType}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="industryType">#{customerControllerForUser.customer.industryType.industryType}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">Street:</td>
 
-					<td valign="bottom"><h:outputLabel id="street">#{customerController.customer.cusStreet}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="street">#{customerControllerForUser.customer.cusStreet}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">City:</td>
 
-					<td valign="bottom"><h:outputLabel id="city">#{customerController.customer.cusCity}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="city">#{customerControllerForUser.customer.cusCity}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">State:</td>
 
-					<td valign="bottom"><h:outputLabel id="state">#{customerController.customer.cusState}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="state">#{customerControllerForUser.customer.cusState}</h:outputLabel>
 					</td>
 				</tr>
-			
+
 				<tr>
 					<td width="100" valign="top">Post code:</td>
 
-					<td valign="bottom"><h:outputLabel id="postcode">#{customerController.customer.cusPostcode}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="postcode">#{customerControllerForUser.customer.cusPostcode}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">Phone:</td>
 
-					<td valign="bottom"><h:outputLabel id="phone">#{customerController.customer.cusPhone}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="phone">#{customerControllerForUser.customer.cusPhone}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">Email:</td>
 
-					<td valign="bottom"><h:outputLabel id="email">#{customerController.customer.cusEmail}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="email">#{customerControllerForUser.customer.cusEmail}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">Staff:</td>
 
-					<td valign="bottom"><h:outputLabel id="customer">#{customerController.customer.staff.staffFname}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="customer">#{customerControllerForUser.customer.staff.staffFname}</h:outputLabel>
 					</td>
 				</tr>
-				
 			</table>
-			<h:link id="close" value="Close" outcome="/normaluser/customerindex.xhtml"
-				class="btn btn-primary" />
+			<h:link id="close" value="Close"
+				outcome="/normaluser/customerindex.xhtml" class="btn btn-primary" />
 
 		</h:form>
 	</div>

@@ -21,5 +21,7 @@ public interface StaffRepositotires {
 	public void removeStaff(int staffId) throws Exception;
 
 	public void editStaff(Staff staff) throws Exception;
+	
+	public List<Staff> combineSearch(String keyString) throws Exception;
 
 }

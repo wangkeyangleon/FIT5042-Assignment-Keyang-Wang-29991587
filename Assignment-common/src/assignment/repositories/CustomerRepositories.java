@@ -4,6 +4,7 @@ import java.util.List;
 
 import assignment.repository.entities.Customer;
 import assignment.repository.entities.IndustryType;
+import assignment.repository.entities.Staff;
 
 /**
  * @author:Keyang Wang
@@ -18,9 +19,14 @@ public interface CustomerRepositories {
 
 	public List<Customer> getAllCustomers() throws Exception;
 
+	public List<Customer> getAllCustomersByStaff(Staff staff) throws Exception;
+
 	public void removeCustomer(int customerId) throws Exception;
 
 	public void editCustomer(Customer customer) throws Exception;
 
 	public List<IndustryType> getAllIndustryTypes() throws Exception;
+
+	public List<Customer> searchCustomersByName(String name) throws Exception;
+
 }

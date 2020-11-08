@@ -1,6 +1,7 @@
 package assignment.mbeans;
 
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,8 +15,10 @@ import javax.faces.view.facelets.FaceletContext;
 
 import assignment.repositories.CustomerContactRepositories;
 import assignment.repositories.CustomerRepositories;
+import assignment.repositories.StaffRepositotires;
 import assignment.repository.entities.Customer;
 import assignment.repository.entities.CustomerContact;
+import assignment.repository.entities.Staff;
 
 /**
  * @author:Keyang Wang
@@ -30,10 +33,55 @@ public class CustomerContactManagedBean implements Serializable {
 	CustomerContactRepositories customerContactRepositories;
 	@EJB
 	CustomerRepositories customerRepositories;
+	@EJB
+	StaffRepositotires staffRepositotires;
+	
+//	CustomerManagedBean customerManagedBean;
+	private Customer customer;
+	private Principal principal;
+	private Staff staff;
 
 //	create a new instance of customerContactManagedBean
 	public CustomerContactManagedBean() {
 		// TODO Auto-generated constructor stub
+		staff = getStaff();
+	}
+
+	public Principal getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(Principal principal) {
+		this.principal = principal;
+	}
+
+	public Staff getStaff() {
+		if (staff == null) {
+			principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+			if (principal != null) {
+				try {
+					staff = staffRepositotires.searchStaff(Integer.parseInt(principal.getName()));
+					System.out.println("****manged bean staff "+staff.getStaffFname());
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}
+		}
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
+	public Customer getCustomer() {
+
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public List<CustomerContact> getAllCustomerContacts() {
@@ -48,6 +96,32 @@ public class CustomerContactManagedBean implements Serializable {
 
 	}
 
+	public List<CustomerContact> getContactsByStaff() {
+		try {
+			System.out.println("*****managed bean contact");
+//			System.out.println("***** staff "+staff.getStaffCity());
+//			System.out.println("### 1 contact mangedBean staff: "+customerManagedBean.getStaff().getStaffId());
+			List<CustomerContact> list = customerContactRepositories.getCustomerContactsByStaff(staff);
+			return list;
+		} catch (Exception e) {
+			// TODO: handle exception
+			Logger.getLogger(CustomerContactManagedBean.class.getName()).log(Level.SEVERE, null, e);
+		}
+		return null;
+	}
+
+	public List<CustomerContact> getContactsByCustomer() {
+		try {
+			List<CustomerContact> customerContacts = customerContactRepositories
+					.getCustomerContactsByCustomer(customer);
+			return customerContacts;
+		} catch (Exception e) {
+			// TODO: handle exception
+			Logger.getLogger(CustomerContactManagedBean.class.getName()).log(Level.SEVERE, null, e);
+		}
+		return null;
+	}
+
 	public List<Customer> getAllCustomers() {
 		try {
 			System.out.println("!! i am get all customers");
@@ -58,15 +132,29 @@ public class CustomerContactManagedBean implements Serializable {
 		}
 		return null;
 	}
+	
+	public List<Customer> getCustomersByStaff()
+	{
+		try {
+//			System.out.println("### contact mangedBean staff: "+customerManagedBean.getStaff().getStaffId());
+			return customerRepositories.getAllCustomersByStaff(staff);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
+	
+	public List<Staff> getAllStaffs() {
+		try {
+			return staffRepositotires.getAllStaffs();
+		} catch (Exception e) {
+			// TODO: handle exception
+			Logger.getLogger(CustomerContactManagedBean.class.getName()).log(Level.SEVERE, null, e);
+		}
+		return null;
 
-//	public void addCustomerContact(CustomerContact customerContact) {
-//		try {
-//			customerContactRepositories.addCustomerContact(customerContact);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			Logger.getLogger(CustomerContactManagedBean.class.getName()).log(Level.SEVERE, null, e);
-//		}
-//	}
+	}
 
 	public CustomerContact searchCustomerContact(int id) {
 		try {
@@ -90,10 +178,10 @@ public class CustomerContactManagedBean implements Serializable {
 	public void editCustomerContact(CustomerContact customerContact) {
 		try {
 			int long1 = customerContact.getCustomer().getCusId();
-			System.out.println("!! i am cus id:"+long1);
+
 			Customer customer = customerRepositories.searchCustomer(long1);
 //			customer.setCusId(long1); 		
-			System.out.println("pig dog:"+customer.getCusName());
+
 			customerContact.setCustomer(customer);
 			customerContactRepositories.editCustomerContact(customerContact);
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -132,6 +220,9 @@ public class CustomerContactManagedBean implements Serializable {
 		Customer customer = new Customer();
 		customer.setCusName(cusName);
 		customerContact.setCustomer(customer);
+		Staff staff = new Staff();
+		staff.setStaffId(loalCustomerContact.getStaffId());
+		customerContact.setStaff(staff);
 		return customerContact;
 	}
 

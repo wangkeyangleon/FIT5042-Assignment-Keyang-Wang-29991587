@@ -65,6 +65,15 @@ public class StaffApplication {
 		staffs.clear();
 		staffs.add(staffManagedBean.searchStaffById(staffId));
 	}
+	
+	public void combineSearch(String keyString) {
+		staffs.clear();
+//		for (Staff staff:staffManagedBean.combineSearch(keyString)) {
+//			staffs.add(staff);
+//			
+//		}
+		staffs.addAll(staffManagedBean.combineSearch(keyString));
+	}
 
 	public void searchAll() {
 		staffs.clear();

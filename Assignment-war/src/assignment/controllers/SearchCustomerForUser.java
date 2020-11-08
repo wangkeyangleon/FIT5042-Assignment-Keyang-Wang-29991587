@@ -14,11 +14,11 @@ import assignment.repository.entities.Customer;
  * @desc:
  */
 @RequestScoped
-@Named("searchCustomer")
-public class SearchCustomer {
+@Named("searchCustomerForUser")
+public class SearchCustomerForUser {
 	private boolean showForm = true;
 	private Customer customer;
-	CustomerApplication application;
+	CustomerApplicationForUser application;
 	private int searchByInt;
 	private String searchByName;
 
@@ -50,18 +50,18 @@ public class SearchCustomer {
 		this.searchByName = searchByName;
 	}
 
-	public CustomerApplication getApplication() {
+	public CustomerApplicationForUser getApplication() {
 		return application;
 	}
 
-	public void setApplication(CustomerApplication application) {
+	public void setApplication(CustomerApplicationForUser application) {
 		this.application = application;
 	}
 
-	public SearchCustomer() {
+	public SearchCustomerForUser() {
 		ELContext context = FacesContext.getCurrentInstance().getELContext();
-		application = (CustomerApplication) FacesContext.getCurrentInstance().getApplication().getELResolver()
-				.getValue(context, null, "customerApplication");
+		application = (CustomerApplicationForUser) FacesContext.getCurrentInstance().getApplication().getELResolver()
+				.getValue(context, null, "customerApplicationForUser");
 		application.updateCustomerList();
 	}
 

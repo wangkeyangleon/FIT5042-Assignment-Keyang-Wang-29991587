@@ -7,12 +7,37 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<title>#{titleController.pageTitle}</title>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </h:head>
-<h:body>
+<h:body class="backpng">
 	<!-- <h:inputText id="username" value="#{request.remoteUser}" /> -->
-	<p>Welcome, #{request.remoteUser}</p>
-
+	
+	<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#"><p>Welcome,
+					#{request.remoteUser}</p></a>
+		</div>
+		<div align="center">
+			<ul class="nav navbar-nav">
+				<li class="active"><h:link id="staff" value="* Staff Management"
+						outcome="/admin/staffindex.xhtml" /></li>
+				<li class="active"><h:link id="customer"
+						value="* Customer Management" outcome="/admin/customerindex.xhtml" /></li>
+				<li class="active"><h:link id="contact"
+						value="* Customer Contact Management"
+						outcome="/admin/contactindex.xhtml" /></li>
+				<li class="active"><h:form>
+						<h:commandButton value="logout"
+							action="#{loginManagedBean.logout()}" class="btn btn-primary" />
+					</h:form></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
 	<div class="container">
 		<div class="navbar navbar-inverse">
 			<div class="navbar-brand">#{titleController.pageTitle} - Staff
@@ -22,7 +47,7 @@
 		<h:form id="MyForm">
 			<table class="table table-bordered table-striped table-hover">
 				<!-- For each customer contact in customer contact ArrayList... -->
-				<tr>
+				<tr class="active">
 					<td><h:outputLabel id="Id" value="Id" /></td>
 					<td><h:outputLabel id="FirstName" value="FirstName" /></td>
 					<td><h:outputLabel id="LastName" value="LastName" /></td>
@@ -31,7 +56,7 @@
 					<td><h:outputLabel id="City" value="City" /></td>
 					<td><h:outputLabel id="State" value="State" /></td>
 					<td><h:outputLabel id="Postcode" value="Postcode" /></td>
-					<td><h:outputLabel id="Email" value="Eamil" /></td>
+					<td><h:outputLabel id="Email" value="Email" /></td>
 					<td><h:outputLabel id="Phone" value="Phone" /></td>
 					<td><h:outputLabel id="Option" value="Option" /></td>
 
@@ -41,7 +66,7 @@
 					var="Staff" varStatus="status">
 
 					<!--  what is the document means?-->
-					<tr>
+					<tr class="warning">
 
 						<td><h:outputText
 								value="#{staffApplication.staffs.get(status.index).staffId}"
@@ -107,23 +132,16 @@
 			</div>
 			<div>
 
-				<h:inputText value="#{searchStaff.searchByInt}" id="searchById"
-					required="true"
-					onchange="if (document.getElementById('MyForm:searchById').value.trim() == '') {document.getElementById('MyForm:searchById').value = 0;} " />
-				<h:commandButton id="searchId" value="Search by Id"
-					action="#{searchStaff.searchStaffById(searchStaff.searchByInt)}"
+				<h:inputText value="#{searchStaff.keyString}" id="searchCombine"
+					onchange="if (document.getElementById('MyForm:searchCombine').value.trim() == '') {document.getElementById('MyForm:searchCombine').value = 0;} " />
+				<h:commandButton id="combineSearch" value="Search"
+					action="#{searchStaff.combineSearch(searchStaff.keyString)}"
 					class="btn btn-primary">
 					<f:param name="staffId" value="#{status.index + 1}" />
 				</h:commandButton>
 			</div>
 
-
-
 		</h:form>
-	</div>
-	<div align="right">
-		<h:link id="back" value="Back" outcome="/admin/index.xhtml"
-			class="btn btn-primary" />
 	</div>
 
 </h:body>

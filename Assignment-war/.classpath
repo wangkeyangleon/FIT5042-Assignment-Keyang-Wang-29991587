@@ -16,5 +16,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Assignment-common"/>
 	<classpathentry kind="lib" path="/Users/wangkeyang/Documents/JavaWork/Jar/javaee-api-7.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Assignment-ejb"/>
+	<classpathentry kind="lib" path="/Users/wangkeyang/Documents/JavaWork/Jar/slf4j.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

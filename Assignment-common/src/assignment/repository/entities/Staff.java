@@ -2,7 +2,13 @@ package assignment.repository.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Length;
+
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -11,9 +17,13 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQueries({ @NamedQuery(name = Staff.GET_ALL_QUERY_NAME, query = "SELECT s FROM Staff s order by s.staffId desc") })
+@NamedQueries({ @NamedQuery(name = Staff.GET_ALL_QUERY_NAME, query = "SELECT s FROM Staff s order by s.staffId desc"),
+		@NamedQuery(name = Staff.GET_ALL_QUERY_NAME1, query = "SELECT s FROM Staff s where s.staffId = ?1 or s.staffEmail = ?1 or s.staffPhone = ?1 or s.staffPostcode = ?1 or s.staffCity =?1 or s.staffFname = ?1 or s.staffGender=?1 or s.staffLname = ?1  or s.staffState = ?1 or s.staffStreet = ?1 or s.staffType = ?1 order by s.staffId desc")
+
+})
 public class Staff implements Serializable {
 	public static final String GET_ALL_QUERY_NAME = "Staff.getAll";
+	public static final String GET_ALL_QUERY_NAME1 = "Staff.getAllStaff";
 	private int staffId;
 	private Date staffBirthdate;
 	private String staffCity;
@@ -66,6 +76,7 @@ public class Staff implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "STAFF_BIRTHDATE")
+	@Past(message = "the date must be the past time")
 	public Date getStaffBirthdate() {
 		return this.staffBirthdate;
 	}
@@ -84,6 +95,7 @@ public class Staff implements Serializable {
 	}
 
 	@Column(name = "STAFF_EMAIL")
+	@Email(message = "please follow the email format")
 	public String getStaffEmail() {
 		return this.staffEmail;
 	}
@@ -201,7 +213,7 @@ public class Staff implements Serializable {
 
 	// bi-directional many-to-one association to CustomerContact
 	@OneToMany(mappedBy = "staff", fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH, CascadeType.DETACH})
+			CascadeType.REFRESH, CascadeType.DETACH })
 	public List<CustomerContact> getCustomerContacts() {
 		return this.customerContacts;
 	}

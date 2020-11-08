@@ -28,7 +28,8 @@
 							</td>
 							<td><h:inputText id="customerContactFirstNamer"
 									value="#{customerContact.conFname}"
-									title="customerContactFirstNamer" /></td>
+									title="customerContactFirstNamer" required="true"
+									requiredMessage="Please input the first name" /></td>
 
 						</tr>
 						<tr>
@@ -37,23 +38,28 @@
 							</td>
 							<td><h:inputText id="customerContactLastNamer"
 									value="#{customerContact.conLname}"
-									title="customerContactLastNamer" /></td>
+									title="customerContactLastNamer" required="true"
+									requiredMessage="Please input the last name" /></td>
 
 						</tr>
+
 						<tr>
 							<td width="200"><h:outputLabel value="customerContactGender"
 									for="customerContactGender" /></td>
-							<td><h:inputText id="customerContactGender"
-									value="#{customerContact.conGender}"
-									title="customerContactGender" /></td>
-
+							<!-- the value below is for display -->
+							<td><h:selectOneMenu id="customerContactGender"
+									value="#{customerContact.conGender}">
+									<f:selectItem itemValue="male" itemLabel="male"></f:selectItem>
+									<f:selectItem itemValue="female" itemLabel="female"></f:selectItem>
+								</h:selectOneMenu></td>
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="customerContactStreet"
 									for="customerContactStreet" /></td>
 							<td><h:inputText id="customerContactStreet"
 									value="#{customerContact.conStreet}"
-									title="customerContactStreet" /></td>
+									title="customerContactStreet" required="true"
+									requiredMessage="Please input the street" /></td>
 
 						</tr>
 
@@ -61,8 +67,8 @@
 							<td width="200"><h:outputLabel value="customerContactCity"
 									for="customerContactCity" /></td>
 							<td><h:inputText id="customerContactCity"
-									value="#{customerContact.conCity}" title="customerContactCity" />
-							</td>
+									value="#{customerContact.conCity}" title="customerContactCity"
+									required="true" requiredMessage="Please input the city" /></td>
 
 						</tr>
 						<tr>
@@ -70,7 +76,8 @@
 									for="customerContactState" /></td>
 							<td><h:inputText id="customerContactState"
 									value="#{customerContact.conState}"
-									title="customerContactState" /></td>
+									title="customerContactState" required="true"
+									requiredMessage="Please input the state" /></td>
 
 						</tr>
 						<tr>
@@ -79,7 +86,12 @@
 							</td>
 							<td><h:inputText id="customerContactPostcode"
 									value="#{customerContact.conPostcode}"
-									title="customerContactPostcode" /></td>
+									title="customerContactPostcode" required="true"
+									requiredMessage="Please input the postcode"
+									validatorMessage="the length of the postcode should be 4">
+									<f:validateLength minmum='4' maximum='4'>
+									</f:validateLength>
+								</h:inputText></td>
 
 						</tr>
 						<tr>
@@ -87,7 +99,8 @@
 									for="customerContactPhone" /></td>
 							<td><h:inputText id="customerContactPhone"
 									value="#{customerContact.conPhone}"
-									title="customerContactPhone" /></td>
+									title="customerContactPhone" required="true"
+									requiredMessage="Please input the phone" /></td>
 
 						</tr>
 						<tr>
@@ -95,7 +108,8 @@
 									for="customerContactEmail" /></td>
 							<td><h:inputText id="customerContactEmail"
 									value="#{customerContact.conEmail}"
-									title="customerContactEmail" /></td>
+									title="customerContactEmail" required="true"
+									requiredMessage="Please input the Email" /></td>
 
 						</tr>
 						<tr>
@@ -104,16 +118,24 @@
 							<td><h:selectOneMenu id="customer"
 									value="#{customerContact.cusName}">
 									<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
-									<f:selectItems value="#{customerContactManagedBean.allCustomers}"
-										var="c" itemLabel="#{c.cusName}"
-										itemValue="#{c.cusName}"></f:selectItems>
+									<f:selectItems
+										value="#{customerContactManagedBean.customersByStaff}" var="o"
+										itemLabel="#{o.cusName}" itemValue="#{o.cusName}"></f:selectItems>
+								</h:selectOneMenu></td>
+						</tr>
+						<tr>
+							<td width="100" valign="top">Staff:</td>
+							<!-- the value below is for display -->
+							<td><h:selectOneMenu id="staff" value="#{customerContact.staffId}">
+									<f:selectItem itemValue="#{customerContactManagedBean.staff.staffId}"
+										itemlabel="#{customerManagedBean.staff.staffId}"></f:selectItem>
 								</h:selectOneMenu></td>
 						</tr>
 
 					</table>
 
 					<h:commandButton id="submit" value="Submit"
-						action="#{addCustomerContact.addCustomerContact(customerContact)}"
+						action="#{addContactForStaff.addCustomerContact(customerContact)}"
 						class="btn btn-primary" />
 					<h:link id="close" value="Close"
 						outcome="/normaluser/contactindex.xhtml" class="btn btn-primary" />

@@ -26,7 +26,8 @@
 							<td width="200"><h:outputLabel value="customerName"
 									for="customerName" /></td>
 							<td><h:inputText id="customerName"
-									value="#{customer.cusName}" title="customerName" /></td>
+									value="#{customer.cusName}" title="customerName"
+									required="true" requiredMessage="Please input the name" /></td>
 
 						</tr>
 						<tr>
@@ -44,61 +45,67 @@
 							<td width="200"><h:outputLabel value="customerStreet"
 									for="customerStreet" /></td>
 							<td><h:inputText id="customerStreet"
-									value="#{customer.cusStreet}" title="customerStreet" /></td>
+									value="#{customer.cusStreet}" title="customerStreet"
+									required="true" requiredMessage="Please input the street" /></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="customerCity"
 									for="customerCity" /></td>
 							<td><h:inputText id="customerCity"
-									value="#{customer.cusCity}" title="customerCity" /></td>
+									value="#{customer.cusCity}" title="customerCity"
+									required="true" requiredMessage="Please input the city" /></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="customerState"
 									for="customerState" /></td>
 							<td><h:inputText id="customerState"
-									value="#{customer.cusState}" title="customerState" /></td>
+									value="#{customer.cusState}" title="customerState"
+									required="true" requiredMessage="Please input the state" /></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="customerPostcode"
 									for="customerPostcode" /></td>
 							<td><h:inputText id="customerPostcode"
-									value="#{customer.cusPostcode}" title="customerPostcode" /></td>
+									value="#{customer.cusPostcode}" title="customerPostcode"
+									required="true" requiredMessage="Please input the post code"
+									validatorMessage="the length of the postcode should be 4">
+									<f:validateLength minmum='4' maximum='4'></f:validateLength>
+								</h:inputText></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="customerPhone"
 									for="customerPhone" /></td>
 							<td><h:inputText id="customerPhone"
-									value="#{customer.cusPhone}" title="customerPhone" /></td>
+									value="#{customer.cusPhone}" title="customerPhone"
+									required="true" requiredMessage="Please input the phone" /></td>
 
 						</tr>
 						<tr>
 							<td width="200"><h:outputLabel value="customerEmail"
 									for="customerEmail" /></td>
 							<td><h:inputText id="customerEmail"
-									value="#{customer.cusEmail}" title="customerEmail" /></td>
+									value="#{customer.cusEmail}" title="customerEmail"
+									required="true" requiredMessage="Please input the Email" /></td>
 
 						</tr>
 						<!--  add staff-->
 						<tr>
 							<td width="100" valign="top">Staff:</td>
 							<!-- the value below is for display -->
-							<td><h:selectOneMenu id="staff"
-									value="#{customer.staffId}">
-									<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
-									<f:selectItems value="#{customerManagedBean.allStaffs}"
-										var="c" itemLabel="#{c.staffId}"
-										itemValue="#{c.staffId}"></f:selectItems>
+							<td><h:selectOneMenu id="staff" value="#{customer.staffId}">
+									<f:selectItem itemValue="#{customerManagedBean.staff.staffId}"
+										itemlabel="#{customerManagedBean.staff.staffId}"></f:selectItem>
 								</h:selectOneMenu></td>
 						</tr>
 
 					</table>
 
 					<h:commandButton id="submit" value="Submit"
-						action="#{addCustomer.addCustomer(customer)}"
+						action="#{addCustomerForUser.addCustomer(customer)}"
 						class="btn btn-primary" />
 					<h:link id="close" value="Close"
 						outcome="/normaluser/customerindex.xhtml" class="btn btn-primary" />

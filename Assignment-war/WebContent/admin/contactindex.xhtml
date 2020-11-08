@@ -7,10 +7,33 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<title>#{titleController.pageTitle}</title>
 </h:head>
-<h:body>
-	<p>Welcome, #{request.remoteUser}</p>
+<h:body class="backpng">
+	<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#"><p>Welcome,
+					#{request.remoteUser}</p></a>
+		</div>
+		<div style="">
+			<ul class="nav navbar-nav">
+				<li class="active"><h:link id="staff" value="* Staff Management"
+						outcome="/admin/staffindex.xhtml" /></li>
+				<li class="active"><h:link id="customer"
+						value="* Customer Management" outcome="/admin/customerindex.xhtml" /></li>
+				<li class="active"><h:link id="contact"
+						value="* Customer Contact Management"
+						outcome="/admin/contactindex.xhtml" /></li>
+				<li class="active"><h:form>
+						<h:commandButton value="logout"
+							action="#{loginManagedBean.logout()}" class="btn btn-primary" />
+					</h:form></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
 	<div class="container">
 		<div class="navbar navbar-inverse">
 			<div class="navbar-brand">#{titleController.pageTitle} -
@@ -20,7 +43,7 @@
 		<h:form id="MyForm">
 			<table class="table table-bordered table-striped table-hover">
 				<!-- For each customer contact in customer contact ArrayList... -->
-				<tr>
+				<tr class="active">
 					<td><h:outputLabel id="Id" value="Id" /></td>
 					<td><h:outputLabel id="FirstName" value="FirstName" /></td>
 					<td><h:outputLabel id="LastName" value="LastName" /></td>
@@ -29,7 +52,7 @@
 					<td><h:outputLabel id="City" value="City" /></td>
 					<td><h:outputLabel id="State" value="State" /></td>
 					<td><h:outputLabel id="Postcode" value="Postcode" /></td>
-					<td><h:outputLabel id="Email" value="Eamil" /></td>
+					<td><h:outputLabel id="Email" value="Email" /></td>
 					<td><h:outputLabel id="Phone" value="Phone" /></td>
 					<td><h:outputLabel id="Customer" value="Customer" /></td>
 					<td><h:outputLabel id="Option" value="Option" /></td>
@@ -42,7 +65,8 @@
 
 					<!--  what is the document means?-->
 					<tr
-						onclick="document.getElementById('MyForm:principle').value = document.getElementById('MyForm:Myrepeat:#{status.index}:outPrice').textContent">
+						onclick="document.getElementById('MyForm:principle').value = document.getElementById('MyForm:Myrepeat:#{status.index}:outPrice').textContent"
+						class="warning">
 						<td><h:outputText
 								value="#{customerContactApplication.customerContacts.get(status.index).conId}"
 								id="customerContactID" /></td>
@@ -122,10 +146,6 @@
 
 
 		</h:form>
-	</div>
-	<div align="right">
-		<h:link id="back" value="Back" outcome="/admin/index.xhtml"
-			class="btn btn-primary" />
 	</div>
 </h:body>
 </html>

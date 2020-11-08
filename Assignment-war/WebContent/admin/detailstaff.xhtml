@@ -3,10 +3,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:rich = "http://richfaces.org/rich">
 <h:head>
 	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
 	<title>#{titleController.pageTitle}</title>
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="/resources/demos/style.css" />
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+	<script type="text/javascript">
+            $(function () {
+                $("#MyForm\\:birthDate").datepicker();
+            });
+        </script>
 </h:head>
 <h:body>
 	<div class="container">
@@ -23,7 +34,7 @@
 					<td valign="bottom"><h:outputLabel id="Id">#{staffController.staff.staffId}</h:outputLabel>
 					</td>
 				</tr>
-					<tr>
+				<tr>
 					<td width="200" valign="top">Staff Type:</td>
 
 					<td valign="bottom"><h:outputLabel id="account">#{staffController.staff.staffType}</h:outputLabel>
@@ -48,9 +59,19 @@
 					</td>
 				</tr>
 				<tr>
+					<td width="200" valign="top">Birth Date:</td>
+
+					<td valign="bottom"><h:outputLabel id="birthDate">#{staffController.staff.staffBirthdate} 
+					<f:convertDateTime pattern="mm/dd/yyyy"/>
+					</h:outputLabel>
+					</td>
+				</tr>
+				<tr>
 					<td width="200" valign="top">Street:</td>
 
-					<td valign="bottom"><h:outputLabel id="street">#{staffController.staff.staffStreet}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="street">#{staffController.staff.staffStreet}
+					
+					</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
@@ -83,7 +104,7 @@
 					<td valign="bottom"><h:outputLabel id="email">#{staffController.staff.staffEmail}</h:outputLabel>
 					</td>
 				</tr>
-				
+
 
 
 			</table>

@@ -21,104 +21,106 @@
 				<tr>
 					<td width="150" valign="top">Id:</td>
 
-					<td valign="bottom"><h:outputLabel id="Id">#{customerContactController.customerContact.conId}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="Id">#{contactControllerForStaff.customerContact.conId}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact first name:</td>
 					<!-- the value below is for display -->
-					<td valign="bottom"><h:inputText
-							id="firstname"
-							value="#{customerContactController.customerContact.conFname}"
+					<td valign="bottom"><h:inputText id="firstname"
+							value="#{contactControllerForStaff.customerContact.conFname}"
 							requiredMessage="Please enter the first name. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact last name:</td>
 					<!-- the value below is for display -->
-					<td valign="bottom"><h:inputText
-							id="lastname"
-							value="#{customerContactController.customerContact.conLname}"
+					<td valign="bottom"><h:inputText id="lastname"
+							value="#{contactControllerForStaff.customerContact.conLname}"
 							requiredMessage="Please enter the last name. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact gender:</td>
 					<!-- the value below is for display -->
-					<td valign="bottom"><h:inputText id="gender"
-							value="#{customerContactController.customerContact.conGender}"
-							requiredMessage="Please enter the gender. "></h:inputText></td>
+					<td><h:selectOneMenu id="staffGender"
+							value="#{contactControllerForStaff.customerContact.conGender}">
+							<f:selectItem itemValue="male" itemLabel="male"></f:selectItem>
+							<f:selectItem itemValue="female" itemLabel="female"></f:selectItem>
+						</h:selectOneMenu></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact street:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="street"
-							value="#{customerContactController.customerContact.conStreet}"
+							value="#{contactControllerForStaff.customerContact.conStreet}"
 							requiredMessage="Please enter the street. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact city:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="city"
-							value="#{customerContactController.customerContact.conCity}"
+							value="#{contactControllerForStaff.customerContact.conCity}"
 							requiredMessage="Please enter the city. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact state:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="state"
-							value="#{customerContactController.customerContact.conState}"
+							value="#{contactControllerForStaff.customerContact.conState}"
 							requiredMessage="Please enter the state. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact post code:</td>
 					<!-- the value below is for display -->
-					<td valign="bottom"><h:inputText
-							id="postcode"
-							value="#{customerContactController.customerContact.conPostcode}"
-							requiredMessage="Please enter the post code. "></h:inputText></td>
+					<td valign="bottom"><h:inputText id="postcode"
+							value="#{contactControllerForStaff.customerContact.conPostcode}"
+							requiredMessage="Please enter the post code. "
+							validatorMessage="the length of the postcode should be 4">
+							<f:validateLength minmum='4' maximum='4'>
+							</f:validateLength>
+						</h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact phone:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="phone"
-							value="#{customerContactController.customerContact.conPhone}"
+							value="#{contactControllerForStaff.customerContact.conPhone}"
 							requiredMessage="Please enter the phone. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact email:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="email"
-							value="#{customerContactController.customerContact.conEmail}"
+							value="#{contactControllerForStaff.customerContact.conEmail}"
 							requiredMessage="Please enter the email. "></h:inputText></td>
 				</tr>
-			<!-- 	<tr>
+				<!-- 	<tr>
 					<td width="100" valign="top">customer:</td>
 					<td valign="bottom"><h:inputText id="customers"
 							value="#{customerContactManagedBean.allCustomers}"
 							requiredMessage="Please enter the customer. "></h:inputText></td>
 				</tr> -->
 				<tr>
-							<td width="100" valign="top">Customer:</td>
-							<!-- the value below is for display -->
-							<td><h:selectOneMenu id="customer"
-									value="#{customerContactController.customerContact.customer.cusId}">
-									<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
-									<f:selectItems value="#{customerContactManagedBean.allCustomers}"
-										var="c" itemLabel="#{c.cusId}"
-										itemValue="#{c.cusId}"></f:selectItems>
-								</h:selectOneMenu></td>
-						</tr>
+					<td width="100" valign="top">Customer:</td>
+					<!-- the value below is for display -->
+					<td><h:selectOneMenu id="customer"
+							value="#{contactControllerForStaff.customerContact.customer.cusId}">
+							<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
+							<f:selectItems value="#{customerContactManagedBean.customersByStaff}"
+								var="c" itemLabel="#{c.cusId}" itemValue="#{c.cusId}"></f:selectItems>
+						</h:selectOneMenu></td>
+				</tr>
 
 
 			</table>
 
 			<h:commandButton id="save" value="Save"
-				action="#{customerContactManagedBean.editCustomerContact(customerContactController.customerContact)}"
+				action="#{customerContactManagedBean.editCustomerContact(contactControllerForStaff.customerContact)}"
 				class="btn btn-primary">
-				<f:param name="customerContactId"
-					value="#{customerContactController.customerContactId+1}" />
+				<f:param name="customerContactIdF"
+					value="#{contactControllerForStaff.customerContactId+1}" />
 			</h:commandButton>
-			<h:link id="close" value="Close" outcome="/normaluser/contactindex.xhtml"
-				class="btn btn-primary" />
+			<h:link id="close" value="Close"
+				outcome="/normaluser/contactindex.xhtml" class="btn btn-primary" />
 		</h:form>
 	</div>
 </h:body>

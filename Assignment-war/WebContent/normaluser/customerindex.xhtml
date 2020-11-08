@@ -7,10 +7,36 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 	<title>#{titleController.pageTitle}</title>
 </h:head>
-<h:body class = "backpng">
-	<p>Welcome, #{request.remoteUser}</p>
+<h:body class="backpng">
+
+	<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#"><p>Welcome,
+					#{customerManagedBean.staff.staffFname}</p></a>
+		</div>
+		<div style="">
+			<ul class="nav navbar-nav">
+				<li class="active"><h:link id="customer"
+						value="* Customer Management"
+						outcome="/normaluser/customerindex.xhtml" /></li>
+				<li class="active"><h:link id="contact"
+						value="* Customer Contact Management"
+						outcome="/normaluser/contactindex.xhtml" /></li>
+				<li class="active"><h:link id="changePassword"
+						value="* Change Password"
+						outcome="/normaluser/changePass.xhtml" /></li>
+				<li class="active"><h:form>
+						<h:commandButton value="logout"
+							action="#{loginManagedBean.logout()}" class="btn btn-primary" />
+					</h:form></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
 	<div class="container">
 		<div class="navbar navbar-inverse">
 			<div class="navbar-brand">#{titleController.pageTitle} -
@@ -20,7 +46,7 @@
 		<h:form id="MyForm">
 			<table class="table table-bordered table-striped table-hover">
 				<!-- For each customer contact in customer contact ArrayList... -->
-				<tr>
+				<tr class="active">
 					<td><h:outputLabel id="Id" value="Id" /></td>
 					<td><h:outputLabel id="Name" value="Name" /></td>
 					<td><h:outputLabel id="IndustryType" value="IndustryType" /></td>
@@ -28,59 +54,59 @@
 					<td><h:outputLabel id="City" value="City" /></td>
 					<td><h:outputLabel id="State" value="State" /></td>
 					<td><h:outputLabel id="Postcode" value="Postcode" /></td>
-					<td><h:outputLabel id="Email" value="Eamil" /></td>
 					<td><h:outputLabel id="Phone" value="Phone" /></td>
+					<td><h:outputLabel id="Email" value="Email" /></td>
 					<td><h:outputLabel id="Option" value="Option" /></td>
 
 				</tr>
 
-				<ui:repeat id="Myrepeat" value="#{customerApplication.customers}"
-					var="customer" varStatus="status">
-
+				<ui:repeat id="Myrepeat"
+					value="#{customerApplicationForUser.customers}" var="customer"
+					varStatus="status">
 					<!--  what is the document means?-->
-					<tr>
+					<tr class="warning">
 						<td><h:outputText
-								value="#{customerApplication.customers.get(status.index).cusId}"
-								id="customerId" /></td>
+								value="#{customerApplicationForUser.customers.get(status.index).cusId}"
+								id="customerIdF" /></td>
 
 						<td><h:outputText id="name"
-								value="#{customerApplication.customers.get(status.index).cusName}" />
+								value="#{customerApplicationForUser.customers.get(status.index).cusName}" />
 						</td>
 						<td><h:outputText id="industryType"
-								value="#{customerApplication.customers.get(status.index).industryType.industryType}" />
+								value="#{customerApplicationForUser.customers.get(status.index).industryType.industryType}" />
 						</td>
 						<td><h:outputText id="street"
-								value="#{customerApplication.customers.get(status.index).cusStreet}" />
+								value="#{customerApplicationForUser.customers.get(status.index).cusStreet}" />
 						</td>
 						<td><h:outputText id="city"
-								value="#{customerApplication.customers.get(status.index).cusCity}" />
+								value="#{customerApplicationForUser.customers.get(status.index).cusCity}" />
 						</td>
 
 						<td><h:outputText id="state"
-								value="#{customerApplication.customers.get(status.index).cusState}" />
+								value="#{customerApplicationForUser.customers.get(status.index).cusState}" />
 						</td>
 						<td><h:outputText id="postCode"
-								value="#{customerApplication.customers.get(status.index).cusPostcode}" />
+								value="#{customerApplicationForUser.customers.get(status.index).cusPostcode}" />
 						</td>
 						<td><h:outputText id="phone"
-								value="#{customerApplication.customers.get(status.index).cusPhone}" />
+								value="#{customerApplicationForUser.customers.get(status.index).cusPhone}" />
 						</td>
 						<td><h:outputText id="email"
-								value="#{customerApplication.customers.get(status.index).cusEmail}" />
+								value="#{customerApplicationForUser.customers.get(status.index).cusEmail}" />
 						</td>
 
 						<td><h:link value="View | "
 								outcome="/normaluser/detailcustomer.xhtml">
-								<!-- pass the parameter to next page, the param name is customercontactID, and the value is index + 1.
+								<!-- pass the parameter to next page, the param name is customerID, and the value is index + 1.
                                 You can get the value from next page using the indexController -->
-								<f:param name="customerId" value="#{status.index + 1}" />
+								<f:param name="customerIdF" value="#{status.index + 1}" />
 							</h:link> <h:link value="Edit | " outcome="/normaluser/editcustomer.xhtml">
 								<!-- pass the parameter to next page, the param name is customerId and the value is index + 1.
                                 You can get the value from next page using the indexController -->
-								<f:param name="customerId" value="#{status.index + 1}" />
+								<f:param name="customerIdF" value="#{status.index + 1}" />
 							</h:link> <h:commandLink value="Delete"
-								action="#{removeCustomer.removeCustomer(customerApplication.customers.get(status.index).cusId)}"
-								disabled="#{customerApplication.customers.get(status.index).cusId==null}">
+								action="#{removeCustomerForUser.removeCustomer(customerApplicationForUser.customers.get(status.index).cusId)}"
+								disabled="#{customerApplicationForUser.customers.get(status.index).cusId==null}">
 							</h:commandLink> <h:outputText value=" " /></td>
 
 					</tr>
@@ -94,28 +120,38 @@
 					action="/normaluser/addcustomer.xhtml" class="btn btn-primary" />
 
 				<h:commandButton id="viewAll" value="View All"
-					action="#{searchCustomer.searchAll()}" class="btn btn-primary">
-					<f:param name="customerId" value="#{status.index + 1}" />
-				</h:commandButton>
-			</div>
-			<div>
-				<h:inputText value="#{searchCustomer.searchByInt}" id="searchById"
-					required="true"
-					onchange="if (document.getElementById('MyForm:searchById').value.trim() == '') {document.getElementById('MyForm:searchById').value = 0;} " />
-				<h:commandButton id="searchId" value="Search by Id"
-					action="#{searchCustomer.searchCustomerById(searchCustomer.searchByInt)}"
+					action="#{searchCustomerForUser.searchAll()}"
 					class="btn btn-primary">
-					<f:param name="customerId" value="#{status.index + 1}" />
+					<f:param name="customerIdF" value="#{status.index + 1}" />
 				</h:commandButton>
 			</div>
 
+			<div>
+				<h:inputText value="#{searchCustomerForUser.searchByInt}"
+					id="searchById" required="true"
+					onchange="if (document.getElementById('MyForm:searchById').value.trim() == '') {document.getElementById('MyForm:searchById').value = 0;} " />
+				<h:commandButton id="searchIdF" value="Search by Id"
+					action="#{searchCustomerForUser.searchCustomerById(searchCustomerForUser.searchByInt)}"
+					class="btn btn-primary">
+					<f:param name="customerIdF" value="#{status.index + 1}" />
+				</h:commandButton>
+			</div>
 
+			<br></br>
+			<br></br>
+			<div>
+				<h:inputText value="#{searchCustomerForUser.searchByName}"
+					id="searchByName"
+					onchange="if (document.getElementById('MyForm:searchByName').value.trim() == '') {document.getElementById('MyForm:searchByName').value = 'unkonwn';} " />
+				<h:commandButton id="searchName" value="Search by Name"
+					action="#{searchCustomerForUser.searchCustomersByName(searchCustomerForUser.searchByName)}"
+					class="btn btn-primary">
+					<f:param name="customerIdF" value="#{status.index + 1}" />
+				</h:commandButton>
+
+			</div>
 
 		</h:form>
-	</div>
-	<div align="right">
-		<h:link id="back" value="Back" outcome="/normaluser/index.xhtml"
-			class="btn btn-primary" />
 	</div>
 </h:body>
 </html>

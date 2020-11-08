@@ -21,21 +21,21 @@
 				<tr>
 					<td width="150" valign="top">Id:</td>
 
-					<td valign="bottom"><h:outputLabel id="Id">#{customerController.customer.cusId}</h:outputLabel>
+					<td valign="bottom"><h:outputLabel id="Id">#{customerControllerForUser.customer.cusId}</h:outputLabel>
 					</td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer name:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="name"
-							value="#{customerController.customer.cusName}"
+							value="#{customerControllerForUser.customer.cusName}"
 							requiredMessage="Please enter the name."></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">Industry type:</td>
 					<!-- the value below is for display -->
 					<td><h:selectOneMenu id="industryType"
-							value="#{customerController.customer.industryType.industryType}">
+							value="#{customerControllerForUser.customer.industryType.industryType}">
 							<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
 							<f:selectItems value="#{customerManagedBean.allIndustryTypes}"
 								var="c" itemLabel="#{c.industryType}"
@@ -46,67 +46,74 @@
 					<td width="100" valign="top">customer street:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="street"
-							value="#{customerController.customer.cusStreet}"
+							value="#{customerControllerForUser.customer.cusStreet}"
 							requiredMessage="Please enter the street. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer city:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="city"
-							value="#{customerController.customer.cusCity}"
+							value="#{customerControllerForUser.customer.cusCity}"
 							requiredMessage="Please enter the city. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer state:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="state"
-							value="#{customerController.customer.cusState}"
+							value="#{customerControllerForUser.customer.cusState}"
 							requiredMessage="Please enter the state. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer post code:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="postcode"
-							value="#{customerController.customer.cusPostcode}"
-							requiredMessage="Please enter the post code. "></h:inputText></td>
+							value="#{customerControllerForUser.customer.cusPostcode}"
+							requiredMessage="Please enter the post code. "
+							validatorMessage="the length of the postcode should be 4">
+							<f:validateLength minmum='4' maximum='4'>
+							</f:validateLength>
+						</h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer phone:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="phone"
-							value="#{customerController.customer.cusPhone}"
+							value="#{customerControllerForUser.customer.cusPhone}"
 							requiredMessage="Please enter the phone. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer email:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="email"
-							value="#{customerController.customer.cusEmail}"
+							value="#{customerControllerForUser.customer.cusEmail}"
 							requiredMessage="Please enter the email. "></h:inputText></td>
 				</tr>
 				<!--  assign staff and contact-->
-				<tr>
+				<!--user does not have rights to do this-->
+				<!-- 	<tr>
 					<td width="100" valign="top">Staff:</td>
-					<!-- the value below is for display -->
+					the value below is for display
 					<td><h:selectOneMenu id="staff"
-							value="#{customerController.customer.staff.staffId}">
-							<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
+							value="#{customerControllerForUser.customer.staff.staffId}">
+							<f:selectItem itemValue="#{null}" itemLabel="select"></f:selectItem>
 							<f:selectItems value="#{customerManagedBean.allStaffs}" var="c"
 								itemLabel="#{c.staffId}" itemValue="#{c.staffId}"></f:selectItems>
 						</h:selectOneMenu></td>
-				</tr>
+				</tr> -->
+
 
 
 			</table>
 
+
 			<h:commandButton id="save" value="Save"
-				action="#{customerManagedBean.editCustomer(customerController.customer)}"
+				action="#{customerManagedBean.editCustomer(customerControllerForUser.customer)}"
 				class="btn btn-primary">
-				<f:param name="customerId"
-					value="#{customerController.customerId+1}" />
+				<f:param name="customerIdF"
+					value="#{customerControllerForUser.customerId+1}" />
 			</h:commandButton>
-			<h:link id="close" value="Close" outcome="/normaluser/customerindex.xhtml"
-				class="btn btn-primary" />
+			<h:link id="close" value="Close"
+				outcome="/normaluser/customerindex.xhtml" class="btn btn-primary" />
 		</h:form>
 	</div>
 </h:body>

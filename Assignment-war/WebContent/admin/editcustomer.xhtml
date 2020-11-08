@@ -68,7 +68,11 @@
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="postcode"
 							value="#{customerController.customer.cusPostcode}"
-							requiredMessage="Please enter the post code. "></h:inputText></td>
+							requiredMessage="Please enter the post code. "
+							validatorMessage="the length of the postcode should be 4">
+							<f:validateLength minmum='4' maximum='4'>
+							</f:validateLength>
+						</h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer phone:</td>

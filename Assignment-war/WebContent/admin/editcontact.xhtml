@@ -27,25 +27,27 @@
 				<tr>
 					<td width="100" valign="top">customer contact first name:</td>
 					<!-- the value below is for display -->
-					<td valign="bottom"><h:inputText
-							id="firstname"
+					<td valign="bottom"><h:inputText id="firstname"
 							value="#{customerContactController.customerContact.conFname}"
 							requiredMessage="Please enter the first name. "></h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact last name:</td>
 					<!-- the value below is for display -->
-					<td valign="bottom"><h:inputText
-							id="lastname"
+					<td valign="bottom"><h:inputText id="lastname"
 							value="#{customerContactController.customerContact.conLname}"
 							requiredMessage="Please enter the last name. "></h:inputText></td>
 				</tr>
+
 				<tr>
 					<td width="100" valign="top">customer contact gender:</td>
 					<!-- the value below is for display -->
-					<td valign="bottom"><h:inputText id="gender"
-							value="#{customerContactController.customerContact.conGender}"
-							requiredMessage="Please enter the gender. "></h:inputText></td>
+
+					<td><h:selectOneMenu id="contactGender"
+							value="#{customerContactController.customerContact.conGender}">
+							<f:selectItem itemValue="male" itemLabel="male"></f:selectItem>
+							<f:selectItem itemValue="female" itemLabel="female"></f:selectItem>
+						</h:selectOneMenu></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact street:</td>
@@ -71,17 +73,21 @@
 				<tr>
 					<td width="100" valign="top">customer contact post code:</td>
 					<!-- the value below is for display -->
-					<td valign="bottom"><h:inputText
-							id="postcode"
+					<td valign="bottom"><h:inputText id="postcode"
 							value="#{customerContactController.customerContact.conPostcode}"
-							requiredMessage="Please enter the post code. "></h:inputText></td>
+							requiredMessage="Please enter the post code. "
+							validatorMessage="the length of the postcode should be 4">
+							<f:validateLength minmum='4' maximum='4'>
+							</f:validateLength>
+						</h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact phone:</td>
 					<!-- the value below is for display -->
 					<td valign="bottom"><h:inputText id="phone"
 							value="#{customerContactController.customerContact.conPhone}"
-							requiredMessage="Please enter the phone. "></h:inputText></td>
+							requiredMessage="Please enter the phone. ">
+						</h:inputText></td>
 				</tr>
 				<tr>
 					<td width="100" valign="top">customer contact email:</td>
@@ -90,23 +96,32 @@
 							value="#{customerContactController.customerContact.conEmail}"
 							requiredMessage="Please enter the email. "></h:inputText></td>
 				</tr>
-			<!-- 	<tr>
+				<!-- 	<tr>
 					<td width="100" valign="top">customer:</td>
 					<td valign="bottom"><h:inputText id="customers"
 							value="#{customerContactManagedBean.allCustomers}"
 							requiredMessage="Please enter the customer. "></h:inputText></td>
 				</tr> -->
 				<tr>
-							<td width="100" valign="top">Customer:</td>
-							<!-- the value below is for display -->
-							<td><h:selectOneMenu id="customer"
-									value="#{customerContactController.customerContact.customer.cusId}">
-									<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
-									<f:selectItems value="#{customerContactManagedBean.allCustomers}"
-										var="c" itemLabel="#{c.cusId}"
-										itemValue="#{c.cusId}"></f:selectItems>
-								</h:selectOneMenu></td>
-						</tr>
+					<td width="100" valign="top">Customer:</td>
+					<!-- the value below is for display -->
+					<td><h:selectOneMenu id="customer"
+							value="#{customerContactController.customerContact.customer.cusId}">
+							<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
+							<f:selectItems value="#{customerContactManagedBean.allCustomers}"
+								var="c" itemLabel="#{c.cusId}" itemValue="#{c.cusId}"></f:selectItems>
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td width="100" valign="top">Staff:</td>
+					<!-- the value below is for display -->
+					<td><h:selectOneMenu id="staff"
+							value="#{customerContactController.customerContact.staff.staffId}">
+							<f:selectItem itemValue="#{null}" itemLabel="--select--"></f:selectItem>
+							<f:selectItems value="#{customerContactManagedBean.allStaffs}"
+								var="o" itemLabel="#{o.staffId}" itemValue="#{o.staffId}"></f:selectItems>
+						</h:selectOneMenu></td>
+				</tr>
 
 
 			</table>

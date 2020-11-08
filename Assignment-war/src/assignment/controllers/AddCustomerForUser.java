@@ -18,15 +18,14 @@ import assignment.repository.entities.IndustryType;
  * @desc:
  */
 @RequestScoped
-@Named("addCustomer")
-public class AddCustomer {
+@Named("addCustomerForUser")
+public class AddCustomerForUser {
 	@ManagedProperty(value = "#{customerManagedBean}")
 	CustomerManagedBean customerManagedBean;
 
 	private boolean showForm = true;
 	private Customer customer;
-	CustomerApplication application;
-	CustomerApplicationForUser applicationForUser;
+	CustomerApplicationForUser application;
 
 	public boolean isShowForm() {
 		return showForm;
@@ -44,10 +43,10 @@ public class AddCustomer {
 		this.customer = customer;
 	}
 
-	public AddCustomer() {
+	public AddCustomerForUser() {
 		ELContext context = FacesContext.getCurrentInstance().getELContext();
-		application = (CustomerApplication) FacesContext.getCurrentInstance().getApplication().getELResolver()
-				.getValue(context, null, "customerApplication");
+		application = (CustomerApplicationForUser) FacesContext.getCurrentInstance().getApplication().getELResolver()
+				.getValue(context, null, "customerApplicationForUser");
 		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
 		customerManagedBean = (CustomerManagedBean) FacesContext.getCurrentInstance().getApplication().getELResolver()
 				.getValue(elContext, null, "customerManagedBean");

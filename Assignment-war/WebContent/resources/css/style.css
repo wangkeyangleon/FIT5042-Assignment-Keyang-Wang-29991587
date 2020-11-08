@@ -29,7 +29,7 @@
 	bottom: 0;
 }
 .backpng{
-	background-image:url('images/sky.jpg');
+	background-image:url('images/printer.jpg');
 }
 .loginmedium{
 	border-style:outset;
@@ -44,4 +44,23 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
+}
+.bodystyle{
+	padding: 0;
+    background: url("images/printer.jpg") no-repeat;
+    background-size: cover;
+}
+.form-container{
+    padding: 30px;
+    margin: 180px 0 0 0;
+    background: rgba(0,0,0,0.7);
+    color: #ffffff;
+    -webkit-box-shadow: 7px 14px 24px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 14px 24px 5px rgba(0,0,0,0.75);
+    box-shadow: 7px 14px 24px 5px rgba(0,0,0,0.75);
+    border-radius: 10px;
+}
+
+.form-container h2{
+    text-align: center;
 }
